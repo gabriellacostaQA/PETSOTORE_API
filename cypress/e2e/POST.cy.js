@@ -5,7 +5,7 @@ it('Criar um novo petID', () => {
       status: "available"
     };
 
-    cy.request({
+    cy.api({
       method: "POST", //Método 
       url: 'https://petstore.swagger.io/v2/pet', // Endpoint para criar um novo pet
       body: petData, // Corpo da requisição com os dados do pet

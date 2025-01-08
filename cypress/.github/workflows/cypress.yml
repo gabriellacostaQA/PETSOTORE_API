@@ -1,0 +1,40 @@
+name: CI - Cypress Tests
+
+on:
+  push:
+    branches:
+      - main # Executa o workflow quando há um push na branch 'main'
+  pull_request:
+    branches:
+      - main # Executa o workflow para pull requests na branch 'main'
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Faz checkout do código
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    # 2. Configura o Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    # 3. Instala as dependências do Cypress
+    - name: Install dependencies
+      run: npm install
+
+    # 4. Executa os testes do Cypress
+    - name: Run Cypress tests
+      run: npx cypress run
+
+    # 5. (Opcional) Publica os relatórios no GitHub
+    - name: Upload Mochawesome Report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: mochawesome-report
+        path: cypress/reports/

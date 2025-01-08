@@ -1,7 +1,7 @@
 it('Deletar um pet pelo ID', () => {
   const petId = 1; // ID do pet a ser deletado
 
-  cy.request({
+  cy.api({
     method: "DELETE", // Método
     url: `https://petstore.swagger.io/v2/pet/${petId}`, // Endpoint com o ID do pet
     headers: {

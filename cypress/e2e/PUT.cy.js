@@ -22,7 +22,7 @@ describe('Atualização do nome do Pet via API', () => {
     };
 
     // Enviando a requisição PUT
-    cy.request({
+    cy.api({
       method: 'PUT',
       url: apiUrl,
       headers: {
